@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <ul class="list-group" id="authors">
+
+    </ul>
+    <div class="card" id="graphiqueTempérature">
+
+    </div>
+    <div class="card" id="graphiquePression">
+
+    </div>
+    <div class="card" id="graphiqueAltitude">
+
+    </div>
+
+    <ul class="list-group">
+
+    {% for b in bmp180 %}
+        <li class="list-group-item active" data-entry-id="{{ b.id }}"> Capture numéro: {{ b.id }}</li>
+        <li class="list-group-item">Température: {{ b.temperature }}</li>
+        <li class="list-group-item">Pression: {{ b.pression }}</li>
+        <li class="list-group-item">Altitude: {{ b.altitude }}</li>
+        <li class="list-group-item">Date: le {{ b.date }} à {{ b.heure }}</li>
+
+    {% endfor %}
+    </ul>
+
+{% endblock %}
