@@ -2,29 +2,22 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}⛵ Nautilus {% endblock %}</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+    <title>{% block title %}Nautilus {% endblock %}</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⛵️</text></svg>">
     {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
         {{ encore_entry_link_tags('app') }}
 
     {% endblock %}
-    {% block javascripts %}
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        <script src="{{ asset('js/bootstrap.js') }}"></script>
-        <script src="{{ asset('js/app.js') }}"></script>
 
-
-        {{ encore_entry_script_tags('app') }}
-    {% endblock %}
 
 
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">⛵   Nautilus </a>
+        <a class="navbar-brand" href="{{ path('app_homepage') }}">⛵   Nautilus </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -35,6 +28,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path("app_flux-video") }}">📷 Flux vidéo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path("app_Api") }}">Api</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -52,7 +48,7 @@
                        🛠️ Outils
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Doc caméra</a></li>
+                        <li><a class="dropdown-item" href="#">Info caméra</a></li>
                         <li><a class="dropdown-item" href="#">Info capteur BMP-180</a></li>
                         <li><a class="dropdown-item" href="#">Info capteur DS-18-B-20</a></li>
                     </ul>
@@ -69,6 +65,14 @@
 
 {% endblock %}
 
+{% block javascripts %}
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="{{ asset('js/bootstrap.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+
+
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
 
 </body>
 </html>

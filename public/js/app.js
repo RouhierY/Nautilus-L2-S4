@@ -11,6 +11,9 @@ google.setOnLoadCallback(drawChart);
 function drawChart() {
     const ul = document.getElementById('authors');
     const url = 'http://127.0.0.1:8000/api/bmp180s.json';
+    const urlTest ='http://localhost/TP/Nautilus/public/index.php/api/bmp180s.json';
+
+
 
     async function fetchTable(url) {
         const resp = await fetch(url);
@@ -40,39 +43,6 @@ function drawChart() {
             dataArrayGraphiquePressionHeure.push([heure,pression])
             dataArrayGraphiqueAltitudeHeure.push([heure,altitude])
         }
-        // var options = {
-        //     hAxis: {
-        //         title: 'Time',
-        //         textStyle: {
-        //             color: '#01579b',
-        //             fontSize: 20,
-        //             fontName: 'Arial',
-        //             bold: true,
-        //             italic: true
-        //         },
-        //         titleTextStyle: {
-        //             color: '#01579b',
-        //             fontSize: 16,
-        //             fontName: 'Arial',
-        //             bold: false,
-        //             italic: true
-        //         }
-        //     },
-        //     vAxis: {
-        //         title: 'Popularity',
-        //         textStyle: {
-        //             color: '#1a237e',
-        //             fontSize: 24,
-        //             bold: true
-        //         },
-        //         titleTextStyle: {
-        //             color: '#1a237e',
-        //             fontSize: 24,
-        //             bold: true
-        //         }
-        //     },
-        //     colors: ['#a52714', '#097138']
-        // };
 
         var dataTableGraphiquePressionHeure = google.visualization.arrayToDataTable(dataArrayGraphiquePressionHeure);
         var dataViewGraphiquePressionHeure = new google.visualization.DataView(dataTableGraphiquePressionHeure);
@@ -123,10 +93,10 @@ function drawChart() {
                         fontSize: 24,
                         bold: true
                     }
-                // param pour le graph Température
-                // title: "Température",
+                    // param pour le graph Température
+                    // title: "Température",
+                }
             }
-        }
         }
         var graphiqueTemperatureHeure = new google.visualization.LineChart(document.getElementById('graphiqueTempérature'));// fonction pour créer le graph
         graphiqueTemperatureHeure.draw(dataViewGraphiqueTemperatureHeure, options);

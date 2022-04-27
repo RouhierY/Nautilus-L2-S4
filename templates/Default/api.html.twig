@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Api{% endblock %}
+
+{% block body %}
+
+    <div id="app">
+
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {{ encore_entry_script_tags('graphique') }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('graphique') }}
+{% endblock %}

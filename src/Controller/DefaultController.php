@@ -28,5 +28,14 @@ class DefaultController extends AbstractController
         ]);
     }
 
+    #[Route('/Api', name: 'app_Api')]
+    public function api(): Response
+    {
+        return $this->render('Default/api.html.twig', [
+
+
+        ]);
+    }
+
 
 }
