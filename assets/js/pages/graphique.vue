@@ -1,56 +1,3 @@
-<template>
-  <div class="container-fluid">
-    <div class="row">
-
-      <div class="col-xs-12 col-9">
-        <div class="row">
-          <div class="col-12">
-            <h1>
-              Graphique
-            </h1>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-xs-12 col-6 mb-2 pb-2">
-            <div>
-<!--              <GChart-->
-<!--                  type="LineChart"-->
-<!--                  :data="chartData"-->
-<!--                  :options="chartOptions"-->
-<!--              />-->
-              <GChart
-                  type="LineChart"
-                  :data="dataArrayGraphiqueAltitudeHeure"
-                  :options="optionsGraphiqueAltitude"
-              />
-              <GChart
-                  type="LineChart"
-                  :data="dataArrayGraphiquePressionHeure"
-                  :options="optionsGraphiquePression"
-              />
-              <GChart
-                  type="LineChart"
-                  :data="dataArrayGraphiqueTemperatureHeure"
-                  :options="optionsGraphiqueTemperature"
-              />
-            </div>
-            <li v-for="(p) in info">
-              <div>Altitude: {{p.altitude}}</div>
-              <div>Date: {{p.date}}</div>
-              <div>Heure: {{p.heure}}</div>
-              <div>Id: {{p.id}}</div>
-              <div>Pression: {{p.pression}}</div>
-              <div>Température: {{p.temperature}}</div>
-            </li>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</template>
-
 <script>
 import axios from "axios"
 import { GChart } from 'vue-google-charts'
@@ -69,6 +16,8 @@ export default {
         ["Heure", "Température"],
       ],
       optionsGraphiqueTemperature : {
+        // width: 700,
+        // height:240,
         vAxis: {
           title: 'Température (°C)',
           textStyle: {
@@ -94,6 +43,8 @@ export default {
         ["Heure", "Pression"]
       ],
       optionsGraphiquePression : {                                             // param pour le graph Température
+        // width: 700,
+        // height:240,
         vAxis: {
           title: 'Pression (hPa)',
           textStyle: {
@@ -120,6 +71,8 @@ export default {
         ["Heure", "Altitude"]
       ],
       optionsGraphiqueAltitude: {                                             // param pour le graph Température
+        // width: 700,
+        // height:240,
         vAxis: {
           title: 'Altitude (m)',
           textStyle: {
@@ -194,13 +147,13 @@ export default {
         this.dataArrayGraphiqueAltitudeHeure.push(x)
       }
     },
-    traitementAPI:function(){
+
+  },
+  beforeUpdate() {
       console.log("TraitementAPI")
       // this.GStailleJSON.set(this.info.length)
 
       for (let i = 0; i < this.info.length; i++) {
-        // console.log(i)
-
         let heure=this.info[i].heure;
         let temperature=this.info[i].temperature;
         let pression=this.info[i].pression;
@@ -210,15 +163,128 @@ export default {
         this.dataArrayGraphiquePressionHeure.push([heure,pression])
         this.dataArrayGraphiqueAltitudeHeure.push([heure,altitude])
         // this.chartData.push([heure,temperature,altitude,pression])
-      }
+
     }
-
   }
-
 }
 
 
 </script>
+
+<template>
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="col-xs-12 col-9">
+        <div class="row">
+          <div class="col-12">
+            <div class="card text-center">
+              <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="true" href="#">Graphiques</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="card-body">
+                <div class="card text-center">
+                  <div class="card-header">
+                    <ul class="nav nav-pills card-header-pills">
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Température</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="card-body">
+                    <div v-if="dataArrayGraphiqueTemperatureHeure.length<3">
+                      Chargement des données...
+
+                    </div>
+                    <div v-else>
+                      <GChart
+                          type="LineChart"
+                          :data="dataArrayGraphiqueTemperatureHeure"
+                          :options="optionsGraphiqueTemperature"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card text-center">
+                  <div class="card-header">
+                    <ul class="nav nav-pills card-header-pills">
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Pression</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="card-body">
+                    <div v-if="dataArrayGraphiquePressionHeure.length<3">
+                      Chargement des données...
+
+                    </div>
+                    <div v-else>
+                      <GChart
+                          type="LineChart"
+                          :data="dataArrayGraphiquePressionHeure"
+                          :options="optionsGraphiquePression"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card text-center">
+                  <div class="card-header">
+                    <ul class="nav nav-pills card-header-pills">
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Altitude</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="card-body">
+                    <div v-if="dataArrayGraphiqueAltitudeHeure.length<3">
+                      Chargement des données...
+
+                    </div>
+                    <div v-else>
+                      <GChart
+                          type="LineChart"
+                          :data="dataArrayGraphiqueAltitudeHeure"
+                          :options="optionsGraphiqueAltitude"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+
+
+        </div>
+
+        <h1>Capteur du {{info[0].date}}</h1>
+
+          <div class="row">
+
+            <ul class="list-group dropdown-menu" aria-labelledby="navbarDropdown">
+              <li v-for="(p) in info">
+                <div class=" list-group-item active">Id: {{p.id}}</div>
+                <div class="list-group-item">Altitude: {{p.altitude}} mètres</div>
+                <div class="list-group-item">Date: le {{ p.date }} à {{ p.heure }}</div>
+                <div class="list-group-item">Pression: {{p.pression}} hPa</div>
+                <div class="list-group-item">Température: {{p.temperature}}</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</template>
+
+
 
 <style>
 .sidebar {

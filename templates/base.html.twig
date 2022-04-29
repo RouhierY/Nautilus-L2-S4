@@ -26,14 +26,14 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{ path("app_homepage") }}">🏠 Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path("app_flux-video") }}">📷 Flux vidéo</a>
+                <li id="fluxvideo" class="nav-item">
+                    <a class="nav-link"  href="{{ path("app_flux-video") }}">📷 Flux vidéo</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path("app_Api") }}">Api</a>
-                </li>
+{#                <li class="nav-item">#}
+{#                    <a class="nav-link" href="{{ path("app_bmp180") }}">Api</a>#}
+{#                </li>#}
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown equipe" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                        🧍 Équipe
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownClickableInside">
@@ -44,12 +44,12 @@
                 </li>
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown outils" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                        🛠️ Outils
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#">Info caméra</a></li>
-                        <li><a class="dropdown-item" href="#">Info capteur BMP-180</a></li>
+                        <li><a class="dropdown-item" href="{{path("app_bmp180")}}">Info capteur BMP-180</a></li>
                         <li><a class="dropdown-item" href="#">Info capteur DS-18-B-20</a></li>
                     </ul>
                 </li>
@@ -58,20 +58,34 @@
 {#                </li>#}
             </ul>
 
+
         </div>
     </div>
 </nav>
 {% block body %}
+    <main></main>
 
 {% endblock %}
-
+<footer>
+    <div class="container">
+        <footer class="py-3 my-4">
+            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                <li class="nav-item"><a href="{{ path('app_homepage') }}" class="nav-link px-2 text-muted">Home</a></li>
+                <li class="nav-item"><a href="{{path('app_flux-video')}}" class="nav-link px-2 text-muted">Flux vidéo</a></li>
+                <li class="nav-item"><a href="#navbarDropdown equipe" class="nav-link px-2 text-muted">Équipe</a></li>
+                <li class="nav-item"><a href="#navbarDropdown outils" class="nav-link px-2 text-muted">Outils</a></li>
+            </ul>
+            <p class="text-center text-muted">&copy; 2022 Yannis ROUHIER, La Rochelle Université L2 Informatique</p>
+        </footer>
+    </div>
+</footer>
 {% block javascripts %}
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="{{ asset('js/bootstrap.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
 
-
     {{ encore_entry_script_tags('app') }}
+    {{ encore_entry_script_tags('graphique') }}
 {% endblock %}
 
 </body>
