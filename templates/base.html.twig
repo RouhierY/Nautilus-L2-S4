@@ -29,15 +29,15 @@
                 <li id="fluxvideo" class="nav-item">
                     <a class="nav-link"  href="{{ path("app_flux-video") }}">📷 Flux vidéo</a>
                 </li>
-{#                <li class="nav-item">#}
-{#                    <a class="nav-link" href="{{ path("app_bmp180") }}">Api</a>#}
-{#                </li>#}
+                {#                <li class="nav-item">#}
+                {#                    <a class="nav-link" href="{{ path("app_bmp180") }}">Api</a>#}
+                {#                </li>#}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown equipe" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                       🧍 Équipe
+                        🧍 Équipe
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownClickableInside">
-                        <li><a class="dropdown-item" target="_blank" href="https://www.linkedin.com/in/b%C3%A9r%C3%A9nice-descoins-359535236">👩‍🎓 Bérénice DESCOINS</a></li>
+                        <li><a class="dropdown-item" target="_blank" href="https://www.linkedin.com/in/b%C3%A9r%C3%A9nice-descoins-359535236"> 👩‍🎓 Bérénice DESCOINS</a></li>
                         <li><a class="dropdown-item" target="_blank" href="https://www.linkedin.com/in/florian-parente-b78644203">👨‍🎓 Florian PARENTE</a></li>
                         <li><a class="dropdown-item" target="_blank" href="https://www.linkedin.com/in/yannis-rouhier-5314a7236">👨‍🎓 Yannis ROUHIER</a></li>
                     </ul>
@@ -45,7 +45,7 @@
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown outils" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                       🛠️ Outils
+                        🛠️ Outils
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#">Info caméra</a></li>
@@ -53,9 +53,25 @@
                         <li><a class="dropdown-item" href="#">Info capteur DS-18-B-20</a></li>
                     </ul>
                 </li>
-{#                <li class="nav-item">#}
-{#                    <a class="nav-link disabled">Disabled</a>#}
-{#                </li>#}
+                <li class="nav-item dropdown">
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <div> Bienvenue {{ app.user.username}} !</div>
+                    <a class="nav-link" href="{{ path('app_logout') }}"> Se déconnecter</a>
+            {% else %}
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown outils" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Connexion
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="{{ path('app_login') }}">Se connecter</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="{{path("app_register")}}">S'enregistrer</a></li>
+                    {% endif %}
+
+                </ul>
+                </li>
+                {#                <li class="nav-item">#}
+                {#                    <a class="nav-link disabled">Disabled</a>#}
+                {#                </li>#}
             </ul>
 
 
@@ -63,7 +79,7 @@
     </div>
 </nav>
 {% block body %}
-    <main></main>
+    <main style="width: 100%"></main>
 
 {% endblock %}
 <footer>
