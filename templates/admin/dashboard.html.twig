@@ -1,0 +1,14 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+{% block title %}Nautilus's Dashboard{% endblock %}
+
+{% block content_title %}CRUD Disponible{% endblock %}
+{% block page_actions %}
+    <!--<a class="btn btn-primary" href="...">Some Action</a>-->
+{% endblock %}
+
+{% block main %}
+    <ul>
+        <li><a href="{{ path('app_admin_crud_bmp180') }}">CRUD du capteur BMP180</a></li>
+        <li><a href="{{ path('app_admin_crud_user') }}">CRUD User</a></li>
+    </ul>
+{% endblock %}
